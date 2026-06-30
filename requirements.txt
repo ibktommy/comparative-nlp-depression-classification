@@ -1,9 +1,9 @@
 streamlit
-numpy
+numpy<2.0
 pandas
 joblib
 torch --index-url https://download.pytorch.org/whl/cpu
-tensorflow>=2.16.1
+tensorflow-cpu>=2.16.1
 transformers
 huggingface_hub
 plotly
