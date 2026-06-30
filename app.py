@@ -11,7 +11,7 @@ import plotly.graph_objects as go
 from huggingface_hub import snapshot_download
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
+from transformers import DistilBertTokenizerFast, AutoModelForSequenceClassification
 
 # ==========================================
 # 1. PAGE CONFIGURATION & THEME
@@ -87,7 +87,7 @@ def load_all_models():
         gru_le = pickle.load(f)
 
     # Model 3: DistilBERT Components
-    bert_tokenizer = AutoTokenizer.from_pretrained(f'{PATH_PREFIX}distilbert_saved_model')
+    bert_tokenizer = tokenizer = DistilBertTokenizerFast.from_pretrained("atomdev-ibktommy/depression-severity-weights")
     bert_model = AutoModelForSequenceClassification.from_pretrained(f'{PATH_PREFIX}distilbert_saved_model')
     device = "cuda" if torch.cuda.is_available() else "cpu"
     bert_model.to(device)
