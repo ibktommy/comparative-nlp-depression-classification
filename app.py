@@ -36,7 +36,7 @@ def get_severity_styles(label):
 # ==========================================
 # 2. SMART HYBRID REPOSITORY DETECT PIPELINE
 # ==========================================
-REPO_ID = "atomdev-ibktommy/depression-severity-weights"
+REPO_ID = "https://huggingface.co/atomdev-ibktommy/depression-severity-weights/tree/main"
 DOWNLOAD_DIR = "downloaded_models"
 
 # Check if weights exist directly in your root project folder (Local Development)
@@ -87,16 +87,12 @@ def load_all_models():
         gru_le = pickle.load(f)
 
     # Model 3: DistilBERT Components
-    # Check if the tokenizer files are in the root download directory or the subfolder
-    if os.path.exists(os.path.join(PATH_PREFIX, "tokenizer_config.json")):
-        tokenizer_path = PATH_PREFIX
-        model_path = PATH_PREFIX
-    else:
-        tokenizer_path = f"{PATH_PREFIX}distilbert_saved_model"
-        model_path = f"{PATH_PREFIX}distilbert_saved_model"
+    # Pull the public structural blueprint for splitting text into word tokens
+    bert_tokenizer = DistilBertTokenizerFast.from_pretrained("distilbert-base-uncased")
 
-    bert_tokenizer = DistilBertTokenizerFast.from_pretrained(tokenizer_path)
-    bert_model = AutoModelForSequenceClassification.from_pretrained(model_path)
+    # Load your specific custom fine-tuned depression classification weights locally
+    bert_model = AutoModelForSequenceClassification.from_pretrained(
+        f'{PATH_PREFIX}distilbert_saved_model')
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
     bert_model.to(device)
