@@ -1,10 +1,12 @@
 streamlit
-numpy
+numpy<2.0
 pandas
 joblib
-torch
-tensorflow
-transformers
+--index-url https://download.pytorch.org/whl/cpu
+torch==2.2.2
+--extra-index-url https://pypi.org/simple
+tensorflow-cpu==2.15.0
+transformers==4.40.0
 huggingface_hub
 plotly
 scikit-learn
