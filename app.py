@@ -87,8 +87,9 @@ def load_all_models():
         gru_le = pickle.load(f)
 
     # Model 3: DistilBERT Components
-    bert_tokenizer = tokenizer = DistilBertTokenizerFast.from_pretrained("atomdev-ibktommy/depression-severity-weights")
-    bert_model = AutoModelForSequenceClassification.from_pretrained(f'{PATH_PREFIX}distilbert_saved_model')
+    bert_tokenizer = DistilBertTokenizerFast.from_pretrained(f'{PATH_PREFIX}distilbert_saved_model')
+    bert_model = AutoModelForSequenceClassification.from_pretrained(
+        f'{PATH_PREFIX}distilbert_saved_model')
     device = "cuda" if torch.cuda.is_available() else "cpu"
     bert_model.to(device)
 
