@@ -1,0 +1,6 @@
+.venv/
+.idea/
+__pycache__/
+*.pkl
+*.h5
+distilbert_saved_model/

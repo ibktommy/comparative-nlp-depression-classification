@@ -1,0 +1,11 @@
+streamlit
+numpy
+pandas
+joblib
+torch --index-url https://download.pytorch.org/whl/cpu
+tensorflow-cpu
+transformers
+huggingface_hub
+plotly
+scikit-learn
+scipy
